@@ -43,7 +43,7 @@ fileIO.readDir = function readDir(inputFolder)
   {
     if(err.code == 'ENOENT')
     {
-      console.error('error!', inputFolder, 'file does not exist!');
+      console.error('error!', inputFolder, 'folder does not exist!');
       return null;
     }
   }
@@ -90,6 +90,7 @@ fileIO.createFiles = function createFiles(path, nameList, dataList)
   for(index = 0; index < nameList.length; ++index)
   {
     var fileName = nameList[index].replace(/\//g,'.');
+    //fileName = fileName.replace(/\\/g,'.');
     var filePath = path.concat('/'+fileName);
     fileIO.createFile(filePath, dataList[index]);
   }
@@ -121,12 +122,12 @@ fileIO.copyFile = function copyFile(baseFolder, targetFolder, fileList, callback
 
     copiedFiles.push(newFilePath);
 
-    fs.copyFile(filePath, newFilePath, (err) => {
-      if(err)
-      {
-        return console.error('error!', filepath, 'copy failed');
-      }
-    });
+    // fs.copyFile(filePath, newFilePath, (err) => {
+    //   if(err)
+    //   {
+    //     return console.error('error!', filepath, 'copy failed');
+    //   }
+    // });
   });
 
   callback(copiedFiles);
@@ -140,19 +141,19 @@ fileIO.deleteFile = function deleteFile(folderPath, fileList, callback)
     var filePath = folderPath.concat('/'+filename);
     deletedFiles.push(filePath);
 
-    fs.access(filePath, fs.constants.F_OK, function(err)
-    {
-      if(err)
-      {
-        return console.log(filePath, '삭제할 수 없는 파일입니다.');
-      }
-      fs.unlink(filePath, function(err){
-        if(err)
-        {
-          return console.log('err!',err);
-        }
-      });
-    });
+    // fs.access(filePath, fs.constants.F_OK, function(err)
+    // {
+    //   if(err)
+    //   {
+    //     return console.log(filePath, '삭제할 수 없는 파일입니다.');
+    //   }
+    //   fs.unlink(filePath, function(err){
+    //     if(err)
+    //     {
+    //       return console.log('err!',err);
+    //     }
+    //   });
+    // });
   });
 
   callback(deletedFiles);
@@ -171,12 +172,12 @@ fileIO.copyFolder = function copyFolder(baseFolder, targetFolder, folderList, ca
 
     copiedFolders.push(path2);
 
-    ncp(path1, path2, function (err) {
-      if(err)
-      {
-        return console.err('err!',path1,err);
-      }
-    });
+    // ncp(path1, path2, function (err) {
+    //   if(err)
+    //   {
+    //     return console.err('err!',path1,err);
+    //   }
+    // });
   });
 
   callback(copiedFolders);
@@ -192,12 +193,12 @@ fileIO.deleteFolder = function deleteFolder(basefolder, folderList, callback)
     var path = basefolder.concat('/'+folder);
     deletedFolders.push(path);
 
-    rimraf(path, function(err){
-      if(err)
-      {
-        return console.log('err!',path,err);
-      }
-    });
+    // rimraf(path, function(err){
+    //   if(err)
+    //   {
+    //     return console.log('err!',path,err);
+    //   }
+    // });
   });
 
   callback(deletedFolders);

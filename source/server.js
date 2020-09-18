@@ -23,7 +23,7 @@ function onRequest(request,response)
   {
     request.on('data', function(chunk){
       var data = queryString.parse(chunk.toString());
-      console.log("folder1:",data.folder1,"folder2:",data.folder2, "save:",data.savediff);
+      console.log("folder1:",data.folder1,"\nfolder2:",data.folder2, "\nsave:",data.savediff);
       main.searchDiff(data.folder1, data.folder2, data.savediff);
       response.write('diff result saved in '+data.savediff);
       response.end();
