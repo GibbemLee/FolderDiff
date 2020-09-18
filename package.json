@@ -1,5 +1,5 @@
 {
-  "name": "folderdiff",
+  "name": "joyfolderdiff",
   "version": "1.0.0",
   "description": "folder diff program",
   "main": "index.js",
