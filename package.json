@@ -1,0 +1,23 @@
+{
+  "name": "folderdiff",
+  "version": "1.0.0",
+  "description": "folder diff program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GibbemLee/FolderDiff.git"
+  },
+  "keywords": [
+    "\"folderDiff\"",
+    "\"diff\""
+  ],
+  "author": "joyleejoy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GibbemLee/FolderDiff/issues"
+  },
+  "homepage": "https://github.com/GibbemLee/FolderDiff#readme"
+}
