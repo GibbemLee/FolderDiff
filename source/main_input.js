@@ -12,7 +12,7 @@ fileIO.readInput(function(result) {
   const folder1 = result[0];
   const folder2 = result[1];
   const savedFolder = result[2];
-
+  console.log('\nfolder1:'+folder1+'\nfolder2:'+folder2+'\nresult saved folder:'+savedFolder);
   main.searchDiff(folder1, folder2, savedFolder);
 
 });

@@ -17,19 +17,32 @@ fileIO.readInput = function ReadInput(callback)
   });
 
   let input = [];
-  let inputCnt = 0;
-  rl.on("line", function(line) {
 
-    if(++inputCnt == 3)//들어온 입력이 두개면 체크
-    {
-      input.push(line);
-      checkInput(input, function(result) {
+  rl.question('folder1? ', function(answer){
+    input.push(answer);
+    rl.question('folder2? ', function(answer){
+      input.push(answer);
+      rl.question('result save folder? ', function(answer){
+        input.push(answer);
         rl.close();
-        return callback(result);
+        return callback(input);
       });
-    }
-    input.push(line);
+    });
   });
+
+  // let inputCnt = 0;
+  // rl.on("line", function(line) {
+  //
+  //   if(++inputCnt == 3)//들어온 입력이 두개면 체크
+  //   {
+  //     input.push(line);
+  //     checkInput(input, function(result) {
+  //       rl.close();
+  //       return callback(result);
+  //     });
+  //   }
+  //   input.push(line);
+  // });
 }
 
 fileIO.readDir = function readDir(inputFolder)
@@ -228,17 +241,17 @@ fileIO.printDiffResult = function printDiffResult(namelist, mode)
   }
 }
 
-function checkInput(input, callback)
-{
-  if(input.length != 3) //inputCnt로 체크하면 쓸모없지만 일단 냅두기
-  {
-    console.log('error! we need 2 inputs');
-    return callback(false);
-  }
-
-  console.log('\nfolder name:', input[0], input[1], 'saved folder:', input[3], '\n');
-  return callback(input);
-
-}
+// function checkInput(input, callback)
+// {
+//   if(input.length != 3) //inputCnt로 체크하면 쓸모없지만 일단 냅두기
+//   {
+//     console.log('error! we need 2 inputs');
+//     return callback(false);
+//   }
+//
+//   console.log('\nfolder name:', input[0], input[1], 'saved folder:', input[3], '\n');
+//   return callback(input);
+//
+// }
 
 module.exports = fileIO;
