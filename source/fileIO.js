@@ -84,7 +84,8 @@ fileIO.createFile = function createFile(filename, filedata)
   fs.writeFile(filename, filedata, function(err){
     if(err)
     {
-      return console.log('err!', filename, 'creation failed');
+      return console.log(err);
+      //return console.log('err!', filename, 'creation failed');
     }
     // console.log("createFile");
     // console.log('++',filename);
@@ -102,9 +103,10 @@ fileIO.createFiles = function createFiles(path, nameList, dataList)
   var index;
   for(index = 0; index < nameList.length; ++index)
   {
-    var fileName = nameList[index].replace(/\//g,'.');
-    //fileName = fileName.replace(/\\/g,'.');
-    var filePath = path.concat('/'+fileName);
+    var fileName = nameList[index].replace(/\//g, '.');
+    fileName = fileName.replace(/\\/g, '.');
+    fileName = fileName.replace(/\:/g, '');
+    var filePath = path.concat('/'+fileName).concat('.txt');
     fileIO.createFile(filePath, dataList[index]);
   }
 }
@@ -133,7 +135,7 @@ fileIO.copyFile = function copyFile(baseFolder, targetFolder, fileList, callback
     var filePath = baseFolder.concat('/'+file);
     var newFilePath = targetFolder.concat('/'+file);
 
-    copiedFiles.push(newFilePath);
+    copiedFiles.push(newFilePath+'.txt');
 
     // fs.copyFile(filePath, newFilePath, (err) => {
     //   if(err)
@@ -152,7 +154,7 @@ fileIO.deleteFile = function deleteFile(folderPath, fileList, callback)
 
   fileList.forEach(function(filename){
     var filePath = folderPath.concat('/'+filename);
-    deletedFiles.push(filePath);
+    deletedFiles.push(filePath+'.txt');
 
     // fs.access(filePath, fs.constants.F_OK, function(err)
     // {
@@ -183,7 +185,7 @@ fileIO.copyFolder = function copyFolder(baseFolder, targetFolder, folderList, ca
     var path1 = baseFolder.concat('/'+folder);
     var path2 = targetFolder.concat('/'+folder);
 
-    copiedFolders.push(path2);
+    copiedFolders.push(path2+'.txt');
 
     // ncp(path1, path2, function (err) {
     //   if(err)
@@ -204,7 +206,7 @@ fileIO.deleteFolder = function deleteFolder(basefolder, folderList, callback)
 
   folderList.forEach(function(folder){
     var path = basefolder.concat('/'+folder);
-    deletedFolders.push(path);
+    deletedFolders.push(path+'.txt');
 
     // rimraf(path, function(err){
     //   if(err)
